@@ -1,5 +1,5 @@
 FROM java:openjdk-8u66-jdk
-MAINTAINER brad
+MAINTAINER brad.babb@boundedinfinity.com
 
 ENV version=1.3.7
 ENV zip=typesafe-activator-$version.zip

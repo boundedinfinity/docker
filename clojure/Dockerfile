@@ -1,2 +1,2 @@
-FROM ruby:2.2.4
+FROM clojure:lein-2.5.3
 MAINTAINER brad.babb@boundedinfinity.com

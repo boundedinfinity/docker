@@ -1,5 +1,5 @@
 docker_group := bi
-docker_image := node-npm
+docker_image := python-pip
 docker_ver := 1.0
 docker_tag := $(docker_group)/$(docker_image):$(docker_ver)
 
