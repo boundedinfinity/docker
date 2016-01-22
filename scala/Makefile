@@ -3,8 +3,6 @@ docker_image := scala-activator
 docker_ver := 1.0
 docker_tag := $(docker_group)/$(docker_image):$(docker_ver)
 
-# export http_proxy=http://http-proxy.b.comcast.net:80
-# export https_proxy=http://https-proxy.b.comcast.net:80
 make_dir := $(abspath $(shell pwd))
 app_dir := /app
 
