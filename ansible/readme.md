@@ -2,7 +2,7 @@
 # To test clean image
 
 ```bash
-make docker-build
+docker run -it --rm python:2.7.11 bash
 ```
 
 # To test this image
