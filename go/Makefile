@@ -1,6 +1,6 @@
 docker_group := boundedinfinity
 docker_image := go-glide
-docker_ver   := 1
+docker_ver   := 1.0.0
 docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
 
 .PHONY: list docker-build docker-run docker-push
