@@ -1,2 +1,4 @@
-FROM python:2.7.11
+FROM boundedinfinity/python-pip:1.0.0
 MAINTAINER brad.babb@boundedinfinity.com
+
+RUN pip install ansible
