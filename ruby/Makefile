@@ -1,24 +1,30 @@
-docker_group := boundedinfinity
-docker_image := ruby-bundler
-docker_ver := 1.0.0
-docker_tag := $(docker_group)/$(docker_image):$(docker_ver)
+makefile_dir := $(abspath $(shell pwd))
 
-make_dir := $(abspath $(shell pwd))
-app_dir := /app
+docker_service  := ruby-bundler
+docker_tag		  := $(shell cat $(makefile_dir)/docker-compose.yml | shyaml get-value services.$(docker_service).image)
 
 .PHONY: list docker-build docker-run docker-push docker-dev
 
 list:
 	@grep '^[^#[:space:]].*:' Makefile | grep -v ':=' | grep -v '^\.' | sed 's/:.*//g' | tr -d ':' | sort
 
+docker-tag:
+	@echo $(docker_tag)
+
+docker-up:
+	docker-compose up $(docker_service)
+
+docker-stop:
+	docker-compose stop $(docker_service)
+
 docker-build:
-	docker build --tag $(docker_tag) .
+	docker-compose build $(docker_service)
 
 docker-bash:
-	docker run -it --rm $(docker_tag) bash
+	docker-compose run --rm $(docker_service) bash
 
 docker-dev:
-	docker run -it --rm -v $(make_dir):$(app_dir) $(docker_tag) bash
+	docker-compose -f $(makefile_dir)/docker-compose-dev.yml run --rm $(docker_service) bash
 
 docker-push:
 	docker push $(docker_tag)

@@ -1,0 +1,7 @@
+version: '2'
+services:
+    fpm:
+        build: .
+        image: boundedinfinity/fpm:1.0.0
+        volumes:
+            - .:/dist

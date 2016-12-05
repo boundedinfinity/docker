@@ -1,0 +1,5 @@
+version: '2'
+services:
+    python-pip:
+        build: .
+        image: boundedinfinity/python-pip:1.0.1

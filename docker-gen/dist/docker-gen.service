@@ -1,0 +1,12 @@
+[Unit]
+Description=docker-gen
+
+[Service]
+PIDFile=/var/run/docker-gen
+User=root
+Group=root
+WorkingDirectory=/opt/docker-gen
+ExectStart=/opt/docker-gen
+
+[Install]
+WantedBy=multi-user.target

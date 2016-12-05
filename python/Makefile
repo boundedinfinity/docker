@@ -1,11 +1,7 @@
 makefile_dir := $(abspath $(shell pwd))
 
-docker_group := boundedinfinity
-docker_image := python-pip
-docker_ver := 1.0.0
-docker_tag := $(docker_group)/$(docker_image):$(docker_ver)
-
-src_dir := /src
+docker_service  := python-pip
+docker_tag		:= $(shell cat $(makefile_dir)/docker-compose.yml | shyaml get-value services.$(docker_service).image)
 
 .PHONY: list docker-build docker-run docker-push docker-dev
 
@@ -15,17 +11,20 @@ list:
 docker-tag:
 	@echo $(docker_tag)
 
-docker-build:
-	docker build --tag $(docker_tag) .
+docker-up:
+	docker-compose up $(docker_service)
 
-docker-clean-build:
-    docker build --no-cache --force-rm --tag $(docker_tag) .
+docker-stop:
+	docker-compose stop $(docker_service)
+
+docker-build:
+	docker-compose build $(docker_service)
 
 docker-bash:
-	docker run -it --rm $(docker_tag) bash
+	docker-compose run --rm $(docker_service) bash
 
 docker-dev:
-	docker run -it --rm -v $(makefile_dir):$(src_dir) $(docker_tag) bash
+	docker-compose -f $(makefile_dir)/docker-compose-dev.yml run --rm $(docker_service) bash
 
 docker-push:
 	docker push $(docker_tag)
