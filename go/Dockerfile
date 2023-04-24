@@ -7,7 +7,7 @@ ENV GLIDE_DIR=/tmp/glide
 ENV GO15VENDOREXPERIMENT=1
 
 RUN apt-get update && apt-get install -y git
-RUN mkdir -p ~/.ssh && echo github.comcast.com >> ~/.ssh/known_hosts
+RUN mkdir -p ~/.ssh && echo github.com >> ~/.ssh/known_hosts
 
 RUN mkdir -p $GLIDE_DIR && \
     wget -q -O $GLIDE_DIR/$GLIDE_ARCHIVE $GLIDE_URL && \

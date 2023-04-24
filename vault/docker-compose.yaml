@@ -1,0 +1,20 @@
+version: '3'
+services:
+    vault: 
+        # https://hub.docker.com/_/vault
+        image: vault:1.13.1
+        build:
+            context: .
+        cap_add:
+            - IPC_LOCK
+        environment:
+            SKIP_CHOWN: true
+            VAULT_ADDR: http://127.0.0.1:8200
+        volumes:
+            - ./files/vault1/config:/vault/config:ro
+            - ./files/vault1/logs:/vault/logs:rw
+            - ./files/vault1/data:/var/vault:rw
+        command: server
+        expose:
+            - 8200
+            - 8201 
